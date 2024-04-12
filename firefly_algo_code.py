@@ -15,6 +15,7 @@ def firefly_algorithm(objective_function, num_of_generations, domain, dimensions
 
     t = 0
     best_firefly_value = 100000000
+
     while t < num_of_generations:
         for i in range(population_size):
             for j in range(population_size):
@@ -22,12 +23,6 @@ def firefly_algorithm(objective_function, num_of_generations, domain, dimensions
                 # compare objective function values (BRIGHTNESS)
                 ## note that lower brightness (lower objective function value) is actually associated with better result as we are minimizing
                 if population[j][-1] < population[i][-1]:
-
-
-
-
-
-                    ############ ISSSUE EXISTS BETWEEN HERE ------> ##################
 
                     # find distance between fireflies
                     summ = 0
@@ -38,7 +33,6 @@ def firefly_algorithm(objective_function, num_of_generations, domain, dimensions
 
                     # store firefly values before movement (in case of move restriction approach used)
                     firefly_i = population[i]
-
 
 
                     # calculate next position
@@ -52,10 +46,6 @@ def firefly_algorithm(objective_function, num_of_generations, domain, dimensions
                     if move_restriction == True:
                         if population[i][-1] > firefly_i[-1]:
                             population[i] = firefly_i
-
-
-
-                    #########<----------#################################################
                   
 
             
@@ -181,22 +171,24 @@ if __name__ == "__main__":
     type_multimodal = 0
     for type in composed_modal_function_set:
         print('Type Begin')
+        # 10000 generations unimodal
         if type_multimodal == 0:
-            num_of_generations = 10000
+            num_of_generations = 10
+        # 2000 generations multimodal
         else:
-            num_of_generations: 2000
+            num_of_generations: 10
 
         for function in type:
             i = 0
             j = 0
             results = []
             while i < 50:
-                results.append(firefly_algorithm(function[2], num_of_generations, function[0], dimensions = 1, population_size = 10, alpha = 1, beta = 1, gamma = 0.01, move_restriction = False))
+                results.append(firefly_algorithm(function[2], num_of_generations, function[0], dimensions = 1, population_size = 20, alpha = 1, beta = 1, gamma = 0.01, move_restriction = False))
                 i+=1
                 if i%10 == 0:
                     j+=1
                     print(function[-1], str(j), '/ 5')
-            print(function[3], '-->    Mean: ', str(np.mean(results)), '     STD', str(np.std(results)),   '     Expected min: ', str(function[1]))
+            print(function[3], '-->    Mean: ', str(np.mean(results)), '     STD:', str(np.std(results)),   '     Expected min: ', str(function[1]))
 
         type_multimodal = 1
 
