@@ -174,7 +174,7 @@ if __name__ == "__main__":
 
     ## TESTING ##
 
-    def testing(move_restriction = False, alpha = 0.25, beta = 0.85, gamma = 1):
+    def testing(move_restriction = False, alpha = 0.25):
         type_multimodal = 0
         for type in composed_modal_function_set:
             print('Type Begin')
@@ -204,25 +204,27 @@ if __name__ == "__main__":
 
             type_multimodal = 1
 
-            type_multimodal = 0
 
 
 
     print("Begin testing --> \n")
 
     # Initial
-    print("\n\n Inital test: move_restriction = False, alpha = 0.25, beta = 0.85, gamma = 1 \n\n")
-    testing(move_restriction = False, alpha = 0.25, beta = 0.85, gamma = 1)
+    print("\n\n Inital test: move_restriction = False, alpha = 0.25 \n\n")
+    testing(move_restriction = False, alpha = 0.25)
 
-    # Move Restriction
-    print("\n\n Second test [Move Restriction True]: move_restriction = True, alpha = 0.25, beta = 0.85, gamma = 1 \n\n")
-    testing(move_restriction = True, alpha = 0.25, beta = 0.85, gamma = 1)
 
     # Alpha Tuning
-    print("\n\n Third test [Alpha Increased]: move_restriction = True, alpha = 0.50, beta = 0.85, gamma = 1\n\n ")
-    testing(move_restriction = True, alpha = 0.50, beta = 0.85, gamma = 1)
-    print("\n\nFourth test [Alpha Decreased]: move_restriction = True, alpha = 0.10, beta = 0.85, gamma = 1 \n\n")
-    testing(move_restriction = False, alpha = 0.10, beta = 0.85, gamma = 1)
+    print("\n\n Second test [Alpha Increased]: move_restriction = False, alpha = 0.50\n\n ")
+    testing(move_restriction = False, alpha = 0.50)
+    print("\nThird test [Alpha Decreased]: move_restriction = True, alpha = 0.10\n\n")
+    testing(move_restriction = False, alpha = 0.10)
+
+
+
+    # Move Restriction
+    print("\n\n Fourth test [Move Restriction True]: move_restriction = True, alpha = 0.25 \n\n")
+    testing(move_restriction = True, alpha = 0.25)
 
 
 
