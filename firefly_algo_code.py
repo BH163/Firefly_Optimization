@@ -210,15 +210,18 @@ if __name__ == "__main__":
 
     print("Begin testing --> \n")
 
-    print("Inital test: move_restriction = False, alpha = 0.25, beta = 0.85, gamma = 1")
+    # Initial
+    print("\n\n Inital test: move_restriction = False, alpha = 0.25, beta = 0.85, gamma = 1 \n\n")
     testing(move_restriction = False, alpha = 0.25, beta = 0.85, gamma = 1)
-    print("Second test [Move Restriction True]: move_restriction = True, alpha = 0.25, beta = 0.85, gamma = 1")
+
+    # Move Restriction
+    print("\n\n Second test [Move Restriction True]: move_restriction = True, alpha = 0.25, beta = 0.85, gamma = 1 \n\n")
     testing(move_restriction = True, alpha = 0.25, beta = 0.85, gamma = 1)
 
-    # manipulate alpha to proposed extrema
-    print("Third test [Alpha Increased]: move_restriction = True, alpha = 0.50, beta = 0.85, gamma = 1")
+    # Alpha Tuning
+    print("\n\n Third test [Alpha Increased]: move_restriction = True, alpha = 0.50, beta = 0.85, gamma = 1\n\n ")
     testing(move_restriction = True, alpha = 0.50, beta = 0.85, gamma = 1)
-    print("Fourth test [Alpha Decreased]: move_restriction = True, alpha = 0.10, beta = 0.85, gamma = 1")
+    print("\n\nFourth test [Alpha Decreased]: move_restriction = True, alpha = 0.10, beta = 0.85, gamma = 1 \n\n")
     testing(move_restriction = False, alpha = 0.10, beta = 0.85, gamma = 1)
 
 
