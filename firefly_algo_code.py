@@ -73,9 +73,13 @@ def firefly_algorithm(objective_function, num_of_generations, domain, dimensions
 
 if __name__ == "__main__":
     import numpy as np
-    ## define functions for benchmarking ##
-    # reference Bird Mating Optimizer paper for mathematic representation of functions
 
+    ######################################################################################################
+    ## DEFINE FUNCTIONS ##
+
+
+
+    # reference Bird Mating Optimizer paper for mathematic representation of functions
     composed_modal_function_set = []
 
     ##UNIMODALS FUNCTIONS -->
@@ -166,31 +170,56 @@ if __name__ == "__main__":
 
     composed_modal_function_set.append(multimodal_function_set)
 
+    ######################################################################################################
 
-    # reference table 2 and table 5 of bird mating for comparison purposes
-    type_multimodal = 0
-    for type in composed_modal_function_set:
-        print('Type Begin')
-        # 10000 generations unimodal
-        if type_multimodal == 0:
-            num_of_generations = 10
-        # 2000 generations multimodal
-        else:
-            num_of_generations: 10
+    ## TESTING ##
 
-        for function in type:
-            i = 0
-            j = 0
-            results = []
-            while i < 50:
-                results.append(firefly_algorithm(function[2], num_of_generations, function[0], dimensions = 1, population_size = 20, alpha = 1, beta = 1, gamma = 0.01, move_restriction = False))
-                i+=1
-                if i%10 == 0:
-                    j+=1
-                    print(function[-1], str(j), '/ 5')
-            print(function[3], '-->    Mean: ', str(np.mean(results)), '     STD:', str(np.std(results)),   '     Expected min: ', str(function[1]))
+    def testing(move_restriction = False, alpha = 0.25, beta = 0.85, gamma = 1):
+        type_multimodal = 0
+        for type in composed_modal_function_set:
+            print('Type Begin')
+            # 10000 generations unimodal
+            if type_multimodal == 0:
+                num_of_generations = 10000
+            # 2000 generations multimodal
+            else:
+                num_of_generations: 2000
 
-        type_multimodal = 1
+            for function in type:
+                i = 0
+                j = 0
+                results = []
+                # run test 50 times for each function to get statisitcs
+                while i < 50:
+                    # assume dimension of 5 (dimensionality not noted in bird mating optimization paper)
+                    results.append(firefly_algorithm(function[2], num_of_generations, function[0], dimensions = 5, population_size = 200, alpha = 0.25, beta = 0.85, gamma = 1, move_restriction = False))
+                    # run progress 
+                    i+=1
+                    if i%10 == 0:
+                        j+=1
+                        print(function[-1], str(j), '/ 5')
+
+                # results
+                print(function[3], '-->    Mean: ', str(np.mean(results)), '     STD:', str(np.std(results)),   '     Expected min: ', str(function[1]))
+
+            type_multimodal = 1
+
+            type_multimodal = 0
+
+
+
+    print("Begin testing --> \n")
+
+    print("Inital test: move_restriction = False, alpha = 0.25, beta = 0.85, gamma = 1")
+    testing(move_restriction = False, alpha = 0.25, beta = 0.85, gamma = 1)
+    print("Second test [Move Restriction True]: move_restriction = True, alpha = 0.25, beta = 0.85, gamma = 1")
+    testing(move_restriction = True, alpha = 0.25, beta = 0.85, gamma = 1)
+
+    # manipulate alpha to proposed extrema
+    print("Third test [Alpha Increased]: move_restriction = True, alpha = 0.50, beta = 0.85, gamma = 1")
+    testing(move_restriction = True, alpha = 0.50, beta = 0.85, gamma = 1)
+    print("Fourth test [Alpha Decreased]: move_restriction = True, alpha = 0.10, beta = 0.85, gamma = 1")
+    testing(move_restriction = False, alpha = 0.10, beta = 0.85, gamma = 1)
 
 
 
@@ -199,8 +228,4 @@ if __name__ == "__main__":
 
 
 
-# The society size is set at 200 and the birds are initialized uniformly at random in the search space. 
-# Maximum number of generations is set to 10,000 when solving unimodal 
-# and multimodal functions and is set to 2000 when solving multimodal functions with a few local minima. 
 
-# we run each test 50 times for each function and then from there we take the mean minima and the std of the minima
