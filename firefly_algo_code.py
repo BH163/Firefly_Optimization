@@ -183,7 +183,7 @@ if __name__ == "__main__":
                 num_of_generations = 10000
             # 2000 generations multimodal
             else:
-                num_of_generations: 2000
+                num_of_generations = 2000
 
             for function in type:
                 i = 0
