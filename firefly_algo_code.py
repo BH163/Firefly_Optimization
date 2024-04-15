@@ -178,12 +178,12 @@ if __name__ == "__main__":
         type_multimodal = 0
         for type in composed_modal_function_set:
             print('Type Begin')
-            # 10000 generations unimodal
+            # 15 generations unimodal
             if type_multimodal == 0:
-                num_of_generations = 10000
-            # 2000 generations multimodal
+                num_of_generations = 15
+            # 10 generations multimodal
             else:
-                num_of_generations = 2000
+                num_of_generations = 10
 
             for function in type:
                 i = 0
@@ -191,8 +191,7 @@ if __name__ == "__main__":
                 results = []
                 # run test 50 times for each function to get statisitcs
                 while i < 50:
-                    # assume dimension of 5 (dimensionality not noted in bird mating optimization paper)
-                    results.append(firefly_algorithm(function[2], num_of_generations, function[0], dimensions = 5, population_size = 200, alpha = 0.25, beta = 0.85, gamma = 1, move_restriction = False))
+                    results.append(firefly_algorithm(function[2], num_of_generations, function[0], dimensions = 1, population_size = 60, alpha = 0.25, beta = 0.85, gamma = 1, move_restriction = False))
                     # run progress 
                     i+=1
                     if i%10 == 0:
