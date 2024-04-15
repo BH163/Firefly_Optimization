@@ -114,21 +114,6 @@ if __name__ == "__main__":
     unimodal_function_set.append([domain_f3, min_f3, f3, 'f3'])
 
     
-
-    # f5
-    domain_f5 = [-30,30]
-    min_f5 = 0
-    def f5(x):
-        i = 0
-        summ = 0
-        while i < len(x)-1:
-            summ += 100 * (x[i+1]-x[i]**2)**2 + (x[i]-1)**2
-            i+=1 
-        return summ
-    
-    unimodal_function_set.append([domain_f5, min_f5, f5, 'f5'])
-
-    
     # f6
     domain_f6 = [-100,100]
     min_f6 = 0
