@@ -176,7 +176,7 @@ if __name__ == "__main__":
                 results = []
                 # run test 50 times for each function to get statisitcs
                 while i < 50:
-                    results.append(firefly_algorithm(function[2], num_of_generations, function[0], dimensions = 1, population_size = 60, alpha = 0.25, beta = 0.85, gamma = 1, move_restriction = False))
+                    results.append(firefly_algorithm(function[2], num_of_generations, function[0], dimensions = 1, population_size = 30, alpha = 0.25, beta = 0.85, gamma = 1, move_restriction = False))
                     # run progress 
                     i+=1
                     if i%10 == 0:
